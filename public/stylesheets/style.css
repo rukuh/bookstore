@@ -1,15 +1,25 @@
+@font-face {
+    font-family: SegoeUI_SL;
+    src: url(segoeuisl.ttf);
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: SegoeUI_SL;
 }
 
 a {
   color: #00B7FF;
 }
 
-img {
-	height: 50%;
-	width: 50%;
+.cover {
+	height: 10%;
+	width: 10%;
+}
+
+.large_cover {
+    height: 50%;
+    width: 50%;
 }
 
 tr{
@@ -33,6 +43,7 @@ tr{
     background:rgba(0,0,0,0.2);
     border-radius:14px;
     padding:8px;
+    max-width:500px;
 }
 
 #content {
@@ -43,7 +54,7 @@ tr{
 
 #close {
     position:absolute;
-    background:url(close.png) 0 0 no-repeat;
+    background:url(../images/close.png) 0 0 no-repeat;
     width:24px;
     height:27px;
     display:block;

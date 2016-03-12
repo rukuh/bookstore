@@ -1,5 +1,18 @@
 extends layout
-
+  
 block content
+  script(src="/javascripts/jquery-2.2.1.js")
+  script(src="/javascripts/view.index.js")
+  
   h1= title
   p Welcome to #{title}
+  #wrapper
+    #display
+      table
+        tr
+          td(style='width: '+(100/3)+'%').
+            Column 1
+          td(style='width: '+(100/3)+'%').
+            Column 2
+          td(style='width: '+(100/3)+'%').
+            Column 3

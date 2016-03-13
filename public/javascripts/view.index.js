@@ -28,7 +28,7 @@ $(function() {
   var bookshelf = $.getJSON("bookshelf.json", function() {
     $.each(bookshelf.responseJSON, function (key, data) {
       //$('.indicators').prepend('<li data-target="#bookshelf" data-slide-to='+key+'"</li>');
-      $('#bookshelf').after().parent().append('<div class="book"><img class="cover" src='+data.cover+'>');
+      $('#bookshelf').append('<div class="book" data="'+data._id+'"><img class="cover" src='+data.cover+'>');
       $('.book:last').append('<div class="title">Title: '+data.title+'</div>');
 	    $('.book:last').append('<div class="author">Author: '+data.author+'</div>');
 	    $('.book:last').append('<div class="short_desc">Short Description: '+data.short_desc+'</div>');
@@ -76,11 +76,14 @@ $(function() {
     method.open = function (settings) {
       $content.empty().append(settings.content);
 
+      var _id = $('.active').attr('data');
       var cover = $('.active').find('.cover').attr('src');
       var title = $('.active').find('.title').text();
       var author = $('.active').find('.author').text();
       var long_desc = $('.active').find('.long_desc').attr('data');
 
+
+      $('#content').attr('data',_id);
       $('#content').append('<img class="large_cover" src='+cover+'>')
       $('#content').append('<div class="title">'+title+'</div')
       $('#content').append('<div class="author">'+author+'</div')
@@ -102,6 +105,7 @@ $(function() {
     
     // Close the modal
     method.close = function () {
+      $('.active').removeClass('active');
       $modal.hide();
       $overlay.hide();
       $content.empty();
@@ -117,10 +121,12 @@ $(function() {
   }());
   
   $(document).ready(function(){
-    $(document).on('click','img',function() {
-      $(this).parent().addClass('active');
+    $(document).on('click','.book',function() {
+      $(this).addClass('active');
 		  modal.open({ content: '' });
-      $(this).parent().removeClass('active');
+    });
+    $(document).on('click','.add_to_cart',function() {
+      console.log($(this).parent().attr('data'));
     });
   });
 });

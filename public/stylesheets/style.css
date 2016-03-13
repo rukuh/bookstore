@@ -13,17 +13,26 @@ a {
 }
 
 .cover {
-	height: 10%;
-	width: 10%;
+	height: 50%;
+	width: auto;
 }
 
 .large_cover {
     height: 50%;
-    width: 50%;
+    width: auto;
 }
 
-tr{
-	width: 33%;
+#bookshelf {
+    -webkit-column-count: 3;
+}
+
+.book {
+    padding: 10px 10px 10px 10px;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 20px;
+    height: 350px;
+    border-style: hidden;
+    border-width: 1px;
 }
 
 #overlay {

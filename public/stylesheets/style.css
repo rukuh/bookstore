@@ -12,9 +12,17 @@ a {
   color: #00B7FF;
 }
 
+li {
+    margin-left: 10px;
+    display: inline;
+    float: right;
+}
+
 .cover {
-	height: 50%;
+    float: left;
+	height: 75%;
 	width: auto;
+    margin-right: 20px;
 }
 
 .large_cover {
@@ -33,6 +41,12 @@ a {
     height: 350px;
     border-style: hidden;
     border-width: 1px;
+    border-radius: 25px;
+}
+
+.book > div
+{
+    z-index: 100;
 }
 
 #overlay {
@@ -47,7 +61,7 @@ a {
 }
 
 #modal {
-    position:absolute;
+    position: absolute;
     background:url(tint20.png) 0 0 repeat;
     background:rgba(0,0,0,0.2);
     border-radius:14px;

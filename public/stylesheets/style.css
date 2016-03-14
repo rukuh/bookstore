@@ -44,6 +44,14 @@ img.cover {
     margin: 10px 10px 10px 10px;
 }
 
+.book .long_desc {
+    display: none;
+}
+
+#content .short_desc {
+    display: none;
+}
+
 .book:before {
   content: '';
   position: absolute;

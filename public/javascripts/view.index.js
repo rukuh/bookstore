@@ -31,18 +31,18 @@ $(function() {
     url: 'bookshelf.json',
     dataType: 'json',
     beforeSend: function() {
-      $('.wrapper').append('<p>Retrieving books...</p>')
+      $('.wrapper').append('<p class="loading">Retrieving books...</p>')
     },
     complete: function() {
       $.each(bookshelf.responseJSON, function (key, data) {
         //var book = $('<div class="book" data-id="'+data._id+'"></div>');
         //book.append('<img class="cover" src='+data.cover+'></div>');
         var book = $('<div class="book"></div>');
-        book.css({ 'background' : 'url('+data.cover+')' })
+        book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' })
         book.append('<div class="id" style="display:none">'+data._id+'</div>');
         book.append('<div class="cover" src='+data.cover+'>');
         book.append('<div class="title">'+data.title+'</div>');
-  	    book.append('<div class="author">By '+data.author+'</div>');
+  	    book.append('<div class="author">by '+data.author+'</div>');
   	    book.append('<div class="short_desc">'+data.short_desc+'</div>');
   	    book.append('<div class="long_desc" style="display:none">'+data.long_desc+'</div>');
         book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
@@ -50,7 +50,7 @@ $(function() {
 
         $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
       });
-      $('.wrapper').find('p').remove();
+      $('.wrapper').find('.loading').remove();
     }
   });
 
@@ -128,17 +128,17 @@ $(function() {
   
   $(document).ready(function(){
     $('#bookshelf').on('mouseenter','.book',function() {
-      $(this).find('button').show();
+      $(this).children('button').show();
     });
 
     $('#bookshelf').on('mouseleave','.book',function() {
-      $(this).find('button').hide();
+      $(this).children('button').hide();
     });
 
     $('#bookshelf').on('click','.book',function() {
       $(this).addClass('active');
 		  modal.open({
-        id : '<div class="id" style="display:none">'+$('.active').find('.title').text()+'</div>',
+        id : '<div class="id" style="display:none">'+$('.active').find('.id').text()+'</div>',
         cover : '<img class="cover" src='+$('.active').find('.cover').attr('src')+'>',
         title : '<div class="title">'+$('.active').find('.title').text()+'</div',
         author : '<div class="author">'+$('.active').find('.author').text()+'</div',
@@ -150,13 +150,12 @@ $(function() {
 
     $('#bookshelf').on('click','.add_to_cart',function(event) {
       event.stopPropagation();
-      cart.push({
-        id : $(this).parent().find('.id').text(),
-        cover : $(this).parent().find('.cover').attr('src'),
-        title : $(this).parent().find('.title').text(),
-        author : $(this).parent().find('.author').text(),
-        short_desc : $(this).parent().find('.short_desc').text(),
-        long_desc : $(this).parent().find('.long_desc').text()
+      var id = $(this).parent().find('.id').text();
+      $.each(bookshelf.responseJSON, function(key,data) {
+          if (data._id == id) {
+            cart.push(data);
+            return false;
+          }          
       });
       console.log(cart);
       modal.open({ content: "Added to cart"});
@@ -165,9 +164,25 @@ $(function() {
       },3000); 
     });
 
+    $("#sort").change(function() {
+      if ($(this).val() == "Default") {
+        bookshelf();
+      } else {
+          var $books = $('#bookshelf'),
+          $booksdiv = $books.children('.book');
+
+          $booksdiv.sort();
+          $booksdiv.detach().appendTo($books);
+      }
+    });    
+
     $("#filter").change(function() {
-      $('.book').hide();
-      $('.genre:contains('+$(this).val()+')').parent().show();
+      if ($(this).val() == "All") {
+        $('.book').show();
+      } else {
+          $('.book').hide();
+          $('.genre:contains('+$(this).val()+')').parent().show();
+      }
     });
 
     $('#search').on('input propertychange paste', function(event) {

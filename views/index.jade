@@ -4,19 +4,26 @@ block content
   script(src='/javascripts/jquery-2.2.1.js')
   script(src='/javascripts/view.index.js')
 
-  li
-    label Search
-      input(id='search',name='search',type='text',value='')
-  li
-    label Category
-      select(id='filter')
-        - var bookshelf = ['','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
-        each book in bookshelf
-          option(value=book) #{book}
+  nav
+    li
+      label Search
+        input(id='search',name='search',type='text',value='')
+    li
+      label Category
+        select(id='filter')
+          - var bookshelf = ['All','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
+          each book in bookshelf
+            option(value=book) #{book}
+    li
+      label Sort by
+        select(id='sort')
+          - var sorter = ['Default','Name','Author','Category']
+          each sort in sorter
+            option(value=sort) #{sort}
 
   h1= title
   p Welcome to #{title}
   .wrapper
     #bookshelf(class='carousel slide' data-ride='carousel')
-      // ol(class='indicators')
+      ol(class='content')
       // div(class='inner' role='listbox')

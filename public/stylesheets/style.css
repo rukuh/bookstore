@@ -12,15 +12,19 @@ label {
   float: left;
   width: 10em;
   margin-right: 1em;
-
 }
+
 li {
     margin-left: 10px;
     display: inline;
     float: right;
 }
 
-.cover {
+select {
+    width: 169px;
+}
+
+img.cover {
     position: relative;
     float: left;
 	height: 100%;
@@ -28,30 +32,16 @@ li {
     margin-right: 20px;
 }
 
-.large_cover {
-    height: 100%;
-    width: auto;
-}
-
-#bookshelf {
-    -webkit-column-count: 4;
-}
-
 .book {
-    padding: 15px 15px 15px 15px;
-    -webkit-column-break-inside: avoid;
-    margin-bottom: 10px;
-    width: 65%;
-    height: 440px;
-    border-style: dotted;
-    border-width: 1px;
-    border-radius: 25px;
-    background-size: cover;
-    background-position: center;
-
-    margin: 10px 0 0 10px;
     position: relative;
     float: left;
+    width: 250px;
+    height: 396px;
+    border-radius: 12px;
+    border-style: dotted;
+    border-width: 1px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
 }
 
 .book:before {
@@ -63,8 +53,8 @@ li {
   left: 0;
   background-image: linear-gradient(to bottom right, white, white);
   opacity: .8;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   -webkit-filter: blur(2px);
   filter: blur(2px);
 }
@@ -75,7 +65,6 @@ li {
     color: black;
     position: absolute;
     bottom: 28%;
-    padding-left: 10px;
 }
 
 .book .author {
@@ -89,8 +78,6 @@ li {
     color: black;
     position: absolute;
     top: 77%;
-    padding-left: 1px;
-    padding-right: 1px;
 }
 
 button {
@@ -121,27 +108,38 @@ button {
 
 #modal {
     position: absolute;
-    background:url(tint20.png) 0 0 repeat;
-    background:rgba(0,0,0,0.2);
-    border-radius:14px;
-    padding:8px;
-    max-width:500px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 14px;
+    padding: 8px;
+    max-width: 768px;
     z-index: 1;
 }
 
 #content {
-    border-radius:8px;
-    background:#fff;
-    padding:20px;
+    float: left;
+    border-radius: 8px;
+    background: #fff;
+    padding: 20px;
+}
+
+#content .title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#content button {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
 }
 
 #close {
-    position:absolute;
-    background:url(../images/close.png) 0 0 no-repeat;
-    width:24px;
-    height:27px;
-    display:block;
-    text-indent:-9999px;
-    top:-7px;
-    right:-7px;
+    position: absolute;
+    background: url(../images/close.png) 0 0 no-repeat;
+    width: 24px;
+    height: 27px;
+    display: block;
+    text-indent: -9999px;
+    top: -7px;
+    right: -7px;
 }

@@ -35,14 +35,18 @@ $(function() {
     },
     complete: function() {
       $.each(bookshelf.responseJSON, function (key, data) {
-        var book = $('<div class="book" data-id="'+data._id+'"></div>');
-        book.append('<img class="cover" src='+data.cover+'>');
-        book.append('<div class="title">Title: '+data.title+'</div>');
-  	    book.append('<div class="author">Author: '+data.author+'</div>');
-  	    book.append('<div class="short_desc">Short Description: '+data.short_desc+'</div>');
-  	    book.append('<div class="long_desc" data="'+data.long_desc+'"</div></div>');
-        book.append('<div class="genre">Genre: '+data.genre+'</div>');
-        book.append('<button class="add_to_cart">Add to Cart</button></div>');
+        //var book = $('<div class="book" data-id="'+data._id+'"></div>');
+        //book.append('<img class="cover" src='+data.cover+'></div>');
+        var book = $('<div class="book"></div>');
+        book.css({ 'background' : 'url('+data.cover+')' })
+        book.append('<div class="id" style="display:none">'+data._id+'</div>');
+        book.append('<div class="cover" src='+data.cover+'>');
+        book.append('<div class="title">'+data.title+'</div>');
+  	    book.append('<div class="author">By '+data.author+'</div>');
+  	    book.append('<div class="short_desc">'+data.short_desc+'</div>');
+  	    book.append('<div class="long_desc" style="display:none">'+data.long_desc+'</div>');
+        book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
+        book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
 
         $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
       });
@@ -124,41 +128,44 @@ $(function() {
   
   $(document).ready(function(){
     $('#bookshelf').on('mouseenter','.book',function() {
-      $(this).css({'background':'rgba(0,0,0,0.1)'});
+      $(this).find('button').show();
     });
 
     $('#bookshelf').on('mouseleave','.book',function() {
-      $(this).css({'background': ''}); 
+      $(this).find('button').hide();
     });
 
     $('#bookshelf').on('click','.book',function() {
       $(this).addClass('active');
 		  modal.open({
-        id : '',
-        cover : '<img class="large_cover" src='+$('.active').find('.cover').attr('src')+'>',
+        id : '<div class="id" style="display:none">'+$('.active').find('.title').text()+'</div>',
+        cover : '<img class="cover" src='+$('.active').find('.cover').attr('src')+'>',
         title : '<div class="title">'+$('.active').find('.title').text()+'</div',
         author : '<div class="author">'+$('.active').find('.author').text()+'</div',
-        long_desc : '<div class="long_desc" data="'+$('.active').find('.long_desc').attr('data')+'">Long Description: '+$('.active').find('.long_desc').attr('data')+'</div',
-        button : '<button class="add_to_cart">Add to Cart</button></div>'
+        short_desc : '<div class="short_desc" style="display:none">'+$('.active').find('.short_desc').text()+'</div>',
+        long_desc : '<div class="long_desc">'+$('.active').find('.long_desc').text()+'</div>',
+        button : '<button class="add_to_cart"><span>Add to Cart </span></button>'
       });
     });
 
     $('#bookshelf').on('click','.add_to_cart',function(event) {
       event.stopPropagation();
       cart.push({
-        id : $(this).parent().data('id'),
-        cover : $(this).parent().find('img').attr('src'),
+        id : $(this).parent().find('.id').text(),
+        cover : $(this).parent().find('.cover').attr('src'),
         title : $(this).parent().find('.title').text(),
         author : $(this).parent().find('.author').text(),
         short_desc : $(this).parent().find('.short_desc').text(),
-        long_desc : $(this).parent().find('.long_desc').attr('data')
+        long_desc : $(this).parent().find('.long_desc').text()
       });
-      modal.open({ content: "Added to cart"});
       console.log(cart);
+      modal.open({ content: "Added to cart"});
+      setTimeout(function(){
+        modal.close();
+      },3000); 
     });
 
     $("#filter").change(function() {
-      console.log($(this).val());
       $('.book').hide();
       $('.genre:contains('+$(this).val()+')').parent().show();
     });

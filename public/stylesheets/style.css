@@ -8,10 +8,12 @@ body {
   font-family: SegoeUI_SL;
 }
 
-a {
-  color: #00B7FF;
-}
+label {
+  float: left;
+  width: 10em;
+  margin-right: 1em;
 
+}
 li {
     margin-left: 10px;
     display: inline;
@@ -19,34 +21,90 @@ li {
 }
 
 .cover {
+    position: relative;
     float: left;
-	height: 75%;
+	height: 100%;
 	width: auto;
     margin-right: 20px;
 }
 
 .large_cover {
-    height: 50%;
+    height: 100%;
     width: auto;
 }
 
 #bookshelf {
-    -webkit-column-count: 3;
+    -webkit-column-count: 4;
 }
 
 .book {
-    padding: 10px 10px 10px 10px;
+    padding: 15px 15px 15px 15px;
     -webkit-column-break-inside: avoid;
-    margin-bottom: 20px;
-    height: 350px;
-    border-style: hidden;
+    margin-bottom: 10px;
+    width: 65%;
+    height: 440px;
+    border-style: dotted;
     border-width: 1px;
     border-radius: 25px;
+    background-size: cover;
+    background-position: center;
+
+    margin: 10px 0 0 10px;
+    position: relative;
+    float: left;
 }
 
-.book > div
-{
-    z-index: 100;
+.book:before {
+  content: '';
+  position: absolute;
+  top: 63%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, white, white);
+  opacity: .8;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.book .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+    position: absolute;
+    bottom: 28%;
+    padding-left: 10px;
+}
+
+.book .author {
+    color: black;
+    position: absolute;
+    bottom: 23%;
+    padding-left: 20px;
+}
+
+.book .short_desc {
+    color: black;
+    position: absolute;
+    top: 77%;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgb(255,255,255);
+  border: 2px solid rgb(0,0,0);
+  color: rgb(0,0,0);
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
 
 #overlay {
@@ -58,6 +116,7 @@ li {
     background: #000;
     opacity: 0.5;
     filter: alpha(opacity=50);
+    z-index: 1;
 }
 
 #modal {
@@ -67,6 +126,7 @@ li {
     border-radius:14px;
     padding:8px;
     max-width:500px;
+    z-index: 1;
 }
 
 #content {

@@ -44,7 +44,7 @@ $(function() {
         book.append('<div class="title">'+data.title+'</div>');
   	    book.append('<div class="author">by '+data.author+'</div>');
   	    book.append('<div class="short_desc">'+data.short_desc+'</div>');
-  	    book.append('<div class="long_desc" style="display:none">'+data.long_desc+'</div>');
+  	    book.append('<div class="long_desc">'+data.long_desc+'</div>');
         book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
         book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
 
@@ -55,12 +55,7 @@ $(function() {
   });
 
   var modal = (function(){
-    var 
-    method = {},
-    $overlay,
-    $modal,
-    $content,
-    $close;
+    var method = {}, $overlay, $modal, $content, $close;
 
     // Append the HTML
     $overlay = $('<div id="overlay"></div>');
@@ -138,13 +133,8 @@ $(function() {
     $('#bookshelf').on('click','.book',function() {
       $(this).addClass('active');
 		  modal.open({
-        id : '<div class="id" style="display:none">'+$('.active').find('.id').text()+'</div>',
         cover : '<img class="cover" src='+$('.active').find('.cover').attr('src')+'>',
-        title : '<div class="title">'+$('.active').find('.title').text()+'</div',
-        author : '<div class="author">'+$('.active').find('.author').text()+'</div',
-        short_desc : '<div class="short_desc" style="display:none">'+$('.active').find('.short_desc').text()+'</div>',
-        long_desc : '<div class="long_desc">'+$('.active').find('.long_desc').text()+'</div>',
-        button : '<button class="add_to_cart"><span>Add to Cart </span></button>'
+        content : $(this).children().clone()
       });
     });
 
@@ -164,17 +154,14 @@ $(function() {
       },3000); 
     });
 
-    $("#sort").change(function() {
-      if ($(this).val() == "Default") {
-        bookshelf();
-      } else {
-          var $books = $('#bookshelf'),
-          $booksdiv = $books.children('.book');
+    /*$("#sort").change(function() {
+      
+      var $books = $('#bookshelf'),
+      $booksdiv = $books.children('.book');
 
-          $booksdiv.sort();
-          $booksdiv.detach().appendTo($books);
-      }
-    });    
+      $booksdiv.sort();
+      $booksdiv.detach().appendTo($books);
+    });*/    
 
     $("#filter").change(function() {
       if ($(this).val() == "All") {

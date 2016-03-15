@@ -6,33 +6,50 @@ $(function() {
     .done( function(responseJSON) {
       var current = 0;
 
-      Shelve(responseJSON,current)
+      Shelve(responseJSON,current,$('#filter').val())
 
       $(window).scroll(function() {
-       if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
           current = current + 60;
-          Shelve(responseJSON,current);
-       }
+          Shelve(responseJSON,current,$('#filter').val());
+        }
       });
     });
 
   // Append HTML for bookshelves
-  function Shelve(bookshelf,current) {
+  function Shelve(bookshelf,current,filter) {
     $('.loading').show();
     $.each(bookshelf.slice(current,current+60), function (key, data) {
-      if ( key < 60 ) {
-        var book = $('<div class="book"></div>');
-        book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' })
-        book.append('<div class="id" style="display:none">'+data._id+'</div>');
-        book.append('<div class="cover" src='+data.cover+'>');
-        book.append('<div class="title">'+data.title+'</div>');
-        book.append('<div class="author">by '+data.author+'</div>');
-        book.append('<div class="short_desc">'+data.short_desc+'</div>');
-        book.append('<div class="long_desc">'+data.long_desc+'</div>');
-        book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
-        book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
+      if ( key < 60 ){
+        if ( filter == "All Categories" ) {
+          var book = $('<div class="book"></div>');
+          book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' })
+          book.append('<div class="id" style="display:none">'+data._id+'</div>');
+          book.append('<div class="cover" src='+data.cover+'>');
+          book.append('<div class="title">'+data.title+'</div>');
+          book.append('<div class="author">by '+data.author+'</div>');
+          book.append('<div class="short_desc">'+data.short_desc+'</div>');
+          book.append('<div class="long_desc">'+data.long_desc+'</div>');
+          book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
+          book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
 
-        $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
+          $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
+        } else { 
+            if ( data.genre == filter ) {
+              var book = $('<div class="book"></div>');
+              book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' })
+              book.append('<div class="id" style="display:none">'+data._id+'</div>');
+              book.append('<div class="cover" src='+data.cover+'>');
+              book.append('<div class="title">'+data.title+'</div>');
+              book.append('<div class="author">by '+data.author+'</div>');
+              book.append('<div class="short_desc">'+data.short_desc+'</div>');
+              book.append('<div class="long_desc">'+data.long_desc+'</div>');
+              book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
+              book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
+
+              $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
+            }
+        }
       } else {
           return bookshelf;
       }
@@ -143,7 +160,7 @@ $(function() {
     });
 
     $("#filter").change(function() {
-      if ($(this).val() == "All") {
+      if ($(this).val() == "All Categories") {
         $('.book').show();
       } else {
           $('.book').hide();
@@ -155,6 +172,15 @@ $(function() {
       event.preventDefault();
       $('.book').hide();
       $('.title:contains('+$(this).val()+')').parent().show();
+    });
+
+    $(window).scroll(function () { 
+      if ($(window).scrollTop() > 173) {
+        $('header').css({ 'border-bottom' : 'outset' , 'border-width' : '1px'});
+      }
+      if ($(window).scrollTop() < 173) {
+        $('header').css({ 'border-bottom' : '' });
+      }
     });
   });
 });

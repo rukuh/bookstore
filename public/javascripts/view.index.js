@@ -26,33 +26,41 @@ $(function() {
   var fact = $('#new-fact').val();*/
 
   var cart = [];
-  
-  var bookshelf = $.ajax({
-    url: 'bookshelf.json',
-    dataType: 'json',
-    beforeSend: function() {
-      $('.wrapper').append('<p class="loading">Retrieving books...</p>')
-    },
-    complete: function() {
-      $.each(bookshelf.responseJSON, function (key, data) {
-        //var book = $('<div class="book" data-id="'+data._id+'"></div>');
-        //book.append('<img class="cover" src='+data.cover+'></div>');
-        var book = $('<div class="book"></div>');
-        book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' })
-        book.append('<div class="id" style="display:none">'+data._id+'</div>');
-        book.append('<div class="cover" src='+data.cover+'>');
-        book.append('<div class="title">'+data.title+'</div>');
-  	    book.append('<div class="author">by '+data.author+'</div>');
-  	    book.append('<div class="short_desc">'+data.short_desc+'</div>');
-  	    book.append('<div class="long_desc">'+data.long_desc+'</div>');
-        book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
-        book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
+  var current = 0;
 
-        $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
-      });
-      $('.wrapper').find('.loading').remove();
-    }
-  });
+  function Shelve(current) {
+    console.log(current);
+    var bookshelf = $.ajax({
+      url: 'bookshelf.json',
+      dataType: 'json',
+      beforeSend: function() {
+        $('.loading').show();
+      },
+      complete: function() {
+        $.each(bookshelf.responseJSON.slice(current,current+60), function (key, data) {
+          if ( key < 60 ) {
+            var book = $('<div class="book"></div>');
+            book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' })
+            book.append('<div class="id" style="display:none">'+data._id+'</div>');
+            book.append('<div class="cover" src='+data.cover+'>');
+            book.append('<div class="title">'+data.title+'</div>');
+            book.append('<div class="author">by '+data.author+'</div>');
+            book.append('<div class="short_desc">'+data.short_desc+'</div>');
+            book.append('<div class="long_desc">'+data.long_desc+'</div>');
+            book.append('<div class="genre" style="display: none">'+data.genre+'</div>');
+            book.append('<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>');
+
+            $('#bookshelf').detach().append(book).appendTo($('.wrapper'));
+          } else {
+              return false;
+          }
+        });
+        $('.loading').hide();
+      }
+    });
+  }
+
+  Shelve(0);
 
   var modal = (function(){
     var method = {}, $overlay, $modal, $content, $close;
@@ -154,15 +162,6 @@ $(function() {
       },3000); 
     });
 
-    /*$("#sort").change(function() {
-      
-      var $books = $('#bookshelf'),
-      $booksdiv = $books.children('.book');
-
-      $booksdiv.sort();
-      $booksdiv.detach().appendTo($books);
-    });*/    
-
     $("#filter").change(function() {
       if ($(this).val() == "All") {
         $('.book').show();
@@ -176,6 +175,13 @@ $(function() {
       event.preventDefault();
       $('.book').hide();
       $('.title:contains('+$(this).val()+')').parent().show();
+    });
+
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+          current = current + 60;
+          Shelve(current);
+       }
     });
   });
 });

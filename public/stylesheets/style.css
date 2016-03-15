@@ -3,6 +3,16 @@
     src: url(segoeuisl.ttf);
 }
 
+header {
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    height: 6%;
+    right: 0px;
+    top: 0px;
+    z-index: 100;
+}
+
 body {
   padding: 50px;
   font-family: SegoeUI_SL;
@@ -16,6 +26,8 @@ label {
 
 li {
     margin-left: 10px;
+    top: 1%;
+    right: 1%;
     display: inline;
     float: right;
 }

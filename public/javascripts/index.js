@@ -11,23 +11,24 @@ $(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
           current = Shelve(responseJSON,current);
         }
-
         Filter();
       });
 
       $("#filter").change(function() {
-        $('.book').removeClass('filter');
-        Filter();
-
-        while ( $(window).height() >= $(document).height() && current < responseJSON.length ) {
+        // Filter loaded nodes and load more if less than enough to trigger load more on scroll
+        do {
           current = Shelve(responseJSON,current);
           Filter();
-        }
+        } while ( $(window).height() >= $(document).height() && current < responseJSON.length );
       });
 
       $('#search').on('input propertychange paste', function(event) {
         event.preventDefault();
-        Search();
+        // Filter loaded nodes and load more if less than enough to trigger load more on scroll
+        do {
+          current = Shelve(responseJSON,current);
+          Filter();
+        } while ( $(window).height() >= $(document).height() && current < responseJSON.length );
       });
     });
 
@@ -52,8 +53,7 @@ $(function() {
       '<div class="author">by '+data.author+'</div>'+
       '<div class="short_desc">'+data.short_desc+'</div>'+
       '<div class="long_desc">'+data.long_desc+'</div>'+
-      //'<div class="genre" style="display: none">'+data.genre+'</div>'+
-      '<div class="genre" style="background-color: white">'+data.genre+'</div>'+
+      '<div class="genre" style="display: none">'+data.genre+'</div>'+
       '<button class="add_to_cart" style="display:none"><span>Add to Cart </span></button>'+
       '</div>');
     book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' });
@@ -62,22 +62,20 @@ $(function() {
 
   // Filters loaded nodes based on category
   function Filter() {
-    $('.genre:contains('+$('#filter').val()+')').parent().addClass('filter');
-        if ($('#filter').val() == 'All') {
-          $('.book').show();
-        } else {
-          $('.book:not(.filter)').hide();
-          $('.genre:contains('+$('#filter').val()+')').parent().show();
-        }
-  }
+    $('.book').removeClass('filter search');
 
-  // Filters loaded nodes based on search
-  function Search() {
-    $('#search').on('input propertychange paste', function(event) {
-      event.preventDefault();
-      $('.book').hide();
-      $('.title:contains('+$(this).val()+')').parent().show();
-    });
+    $('.genre:contains('+$('#filter').val()+')').parent().addClass('filter');
+    $('.title:contains('+$('#search').val()+')').parent().addClass('search');
+    
+    $('.book').show();
+
+    if ($('#filter').val() == 'All') {      
+      $('.book').not('.search').hide();
+      $('.book.search').show();
+    } else {      
+      $('.book:not(.filter.search)').hide();
+      $('.book.search.filter').show();
+    }
   }
 
   // Dynamic modal takes contents as parameter

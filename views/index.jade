@@ -2,7 +2,7 @@ extends layout
 
 block content
   script(src='/javascripts/jquery-2.2.1.js')
-  script(src='/javascripts/view.index.js')
+  script(src='/javascripts/index.js')
 
   header
     li
@@ -11,7 +11,7 @@ block content
     li
       label Category
         select(id='filter')
-          - var bookshelf = ['All Categories','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
+          - var bookshelf = ['All','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
           each book in bookshelf
 
             option(value=book) #{book}

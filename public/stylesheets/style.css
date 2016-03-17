@@ -12,6 +12,15 @@ header {
   right: 0px;
   top: 0px;
   z-index: 1;
+  overflow: hidden;
+}
+
+h1 {
+  display: table-cell;
+  vertical-align: middle;
+  padding-top: 4%;
+  padding-left: 15%;
+  white-space: nowrap;
 }
 
 body {

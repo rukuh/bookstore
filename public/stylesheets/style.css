@@ -1,17 +1,17 @@
 @font-face {
-    font-family: SegoeUI_SL;
-    src: url(segoeuisl.ttf);
+  font-family: SegoeUI_SL;
+  src: url(segoeuisl.ttf);
 }
 
 header {
-    background-image: url(../images/background.jpg);
-    background-attachment: fixed;
-    position: fixed;
-    width: 100%;
-    height: 67px;
-    right: 0px;
-    top: 0px;
-    z-index: 1;
+  background-image: url(../images/background.jpg);
+  background-attachment: fixed;
+  position: fixed;
+  width: 100%;
+  height: 67px;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
 }
 
 body {
@@ -28,47 +28,123 @@ label {
 }
 
 li {
-    margin: 10px 10px 10px 10px;
-    top: 1%;
-    right: 1%;
-    display: inline;
-    float: right;
+  margin: 10px 10px 10px 10px;
+  top: 1%;
+  right: 1%;
+  display: inline;
+  float: right;
 }
 
 select {
-    width: 169px;
+  width: 169px;
 }
 
 img.cover {
-    position: relative;
-    float: left;
-	height: 100%;
-	width: auto;
-    margin-right: 20px;
+  position: relative;
+  float: left;
+  height: 100%;
+  width: auto;
+  margin-right: 20px;
+}
+
+button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgb(255,255,255);
+  border: 2px solid rgb(0,0,0);
+  color: rgb(0,0,0);
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
 
 #bookshelf {
-    display: inline-block;
+  display: inline-block;
+}
+
+#overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  z-index: 2;
+}
+
+#modal {
+  position: absolute;
+  background: rgba(0,0,0,0.2);
+  border-radius: 14px;
+  padding: 8px;
+  max-width: 768px;
+  z-index: 3;
+}
+
+#content > button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+
+#content {
+  float: left;
+  border-radius: 8px;
+  background: #fff;
+  padding: 20px;
+}
+
+#content > .title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#content > .short_desc {
+  display: none;
+}
+
+#close {
+  background: url(../images/close.png) 0 0 no-repeat;
+  position: absolute;
+  width: 24px;
+  height: 27px;
+  display: block;
+  text-indent: -9999px;
+  top: -7px;
+  right: -7px;
 }
 
 .book {
-    position: relative;
-    float: left;
-    width: 250px;
-    height: 396px;
-    border-radius: 12px;
-    border-style: dotted;
-    border-width: 1px;
-    padding: 10px 10px 10px 10px;
-    margin: 10px 10px 10px 10px;
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 396px;
+  border-radius: 12px;
+  border-style: dotted;
+  border-width: 1px;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
 }
 
-.book .long_desc {
-    display: none;
+.book > button {
+  display: none;
 }
 
-#content .short_desc {
-    display: none;
+.book:hover button{
+  display: inline;
+}
+
+.id {
+  display: none;
+}
+
+.genre {
+  display: none;   
 }
 
 .book:before {
@@ -86,87 +162,27 @@ img.cover {
   filter: blur(2px);
 }
 
-.book .title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: black;
-    position: absolute;
-    bottom: 28%;
+.book > .long_desc {
+  display: none;
 }
 
-.book .author {
-    color: black;
-    position: absolute;
-    bottom: 23%;
-    padding-left: 20px;
+.book > .title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  bottom: 28%;
 }
 
-.book .short_desc {
-    color: black;
-    position: absolute;
-    top: 77%;
+.book > .author {
+  color: black;
+  position: absolute;
+  bottom: 23%;
+  padding-left: 20px;
 }
 
-button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: rgb(255,255,255);
-  border: 2px solid rgb(0,0,0);
-  color: rgb(0,0,0);
-  text-align: center;
-  font-size: 12px;
-  padding: 10px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-#overlay {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
-    z-index: 2;
-}
-
-#modal {
-    position: absolute;
-    background: rgba(0,0,0,0.2);
-    border-radius: 14px;
-    padding: 8px;
-    max-width: 768px;
-    z-index: 3;
-}
-
-#content {
-    float: left;
-    border-radius: 8px;
-    background: #fff;
-    padding: 20px;
-}
-
-#content .title {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-#content button {
-    position: absolute;
-    right: 5%;
-    bottom: 5%;
-}
-
-#close {
-    position: absolute;
-    background: url(../images/close.png) 0 0 no-repeat;
-    width: 24px;
-    height: 27px;
-    display: block;
-    text-indent: -9999px;
-    top: -7px;
-    right: -7px;
+.book > .short_desc {
+  color: black;
+  position: absolute;
+  top: 77%;
 }

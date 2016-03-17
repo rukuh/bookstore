@@ -3,6 +3,10 @@ extends layout
 block content
   script(src='/javascripts/jquery-2.2.1.js')
   script(src='/javascripts/index.js')
+  script(src='/javascripts/eventListeners.js')
+  script(src='/javascripts/modal.js')
+  script(src='/javascripts/bookshelf.js')
+  script(src='/javascripts/delay.js')
 
   header
     li
@@ -20,4 +24,4 @@ block content
   p Welcome to #{title}
   .wrapper
     div(class='loading' style='display=none') Retrieving books...
-    #bookshelf(class='carousel slide' data-ride='carousel')
+    #bookshelf

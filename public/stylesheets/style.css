@@ -181,6 +181,11 @@ button {
   color: black;
   position: absolute;
   bottom: 28%;
+  left: 10px;
+  right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .book > .author {

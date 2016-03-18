@@ -1,14 +1,14 @@
 // Append HTML for bookshelves
-function Shelve(bookshelf,current,filter,search) {
+function Shelve(bookshelf,current,filter,search,load) {
   $('.loading').show();
   $.each(bookshelf.slice(current), function (key, data) {
-    if ( key < 50 ) {
+    if ( key < load ) {
       // Append books if filter is set to All
-      if ( filter == 'All' && ( data.title.indexOf(search) != -1) ) { 
+      if ( filter == 'All' && ( data.title.toLowerCase().indexOf(search) != -1) ) { 
         Render(data); 
       }
       // Append books if filter is set to other category
-      else if (data.genre == filter && ( data.title.indexOf(search) != -1) ) {
+      else if (data.genre == filter && ( data.title.toLowerCase().indexOf(search) != -1) ) {
         Render(data);
       }
     } 
@@ -16,7 +16,7 @@ function Shelve(bookshelf,current,filter,search) {
     else { return false; }
   });
   $('.loading').hide();
-  return current+50;
+  return current+load;
 }
 
 // Create nodes and append to #bookshelf
@@ -29,7 +29,7 @@ function Render(data) {
     '<div class="short_desc">'+data.short_desc+'</div>'+
     '<div class="long_desc">'+data.long_desc+'</div>'+
     '<div class="genre">'+data.genre+'</div>'+
-    '<button class="add_to_cart"><span>Add to Cart </span></button>'+
+    '<button class="add_to_cart">Add to Cart</button>'+
     '</div>');
   book.css({ 'background' : 'url('+data.cover+')', 'background-size' : '100%' });
   $('#bookshelf').detach().append(book).appendTo($('.wrapper'));

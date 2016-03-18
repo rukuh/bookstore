@@ -3,14 +3,14 @@ $(function() {
   $.ajax( 'bookshelf.json' )
     .done( function(responseJSON) {
       // Number of books to load each call
-      var load = 24;
+      var load = 30;
 
       // Initial load books
       var current = Shelve(responseJSON,0,$('#filter').val(),$('#search').val(),load);
 
       // Load books on scroll
       $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        while($(window).scrollTop() + $(window).height() > $(document).height() - 100 && current < responseJSON.length) {
           current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val(),load);
         }
       });

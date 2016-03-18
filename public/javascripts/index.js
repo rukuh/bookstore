@@ -2,25 +2,28 @@ $(function() {
   // Render bookshelves in ajax callback due to asynchonous request
   $.ajax( 'bookshelf.json' )
     .done( function(responseJSON) {
+      // Number of books to load each call
+      var load = 24;
+
       // Initial load books
-      var current = Shelve(responseJSON,0,$('#filter').val(),$('#search').val());
+      var current = Shelve(responseJSON,0,$('#filter').val(),$('#search').val(),load);
 
       // Load books on scroll
       $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-          current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val());
+          current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val(),load);
         }
       });
 
       // Load books on category select
       $("#filter").change(function() {
         $('#bookshelf').empty();
-        current = Shelve(responseJSON,0,$('#filter').val(),$('#search').val());
+        current = 0;
 
         // Load books if there are less than enough to trigger scroll
-        while( ($(window).height() >= $(document).height() || $('.book').length < 50 ) && current < responseJSON.length ){
-          current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val());
-        };
+        do {
+          current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val(),load);
+        } while( ($(window).height() >= $(document).height() || $('.book').length < load ) && current < responseJSON.length );
       });
 
       // Load books on search
@@ -28,12 +31,12 @@ $(function() {
         // Prevent multiple search requests while user is typing
         delay(function(){
           $('#bookshelf').empty();
-          current = Shelve(responseJSON,0,$('#filter').val(),$('#search').val());
+          current = 0;
 
           // Load books if there are less than enough to trigger scroll
-          while( ($(window).height() >= $(document).height() || $('.book').length < 50 ) && current < responseJSON.length ){
-            current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val());
-          };
+          do {
+            current = Shelve(responseJSON,current,$('#filter').val(),$('#search').val(),load);
+          } while( ($(window).height() >= $(document).height() || $('.book').length < load ) && current < responseJSON.length );
         }, 500);
       });
     });

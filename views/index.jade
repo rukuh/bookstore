@@ -7,21 +7,22 @@ block content
   script(src='/javascripts/modal.js')
   script(src='/javascripts/bookshelf.js')
   script(src='/javascripts/delay.js')
+  link(rel='stylesheet' href='/stylesheets/fontello.css')
 
-  header
-    li
-      label Search
-        input(id='search',name='search',type='text',value='')
-    li
-      label Category
-        select(id='filter')
-          - var bookshelf = ['All','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
-          each book in bookshelf
-
-            option(value=book) #{book}
+  nav
     h1= title
+    div(class='searchbar')
+      input(id='search',name='search',type='text',placeholder="Search...",value='')
+    div(class='filterbar')
+      select(id='filter')
+        - var bookshelf = ['Category','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
+        each book in bookshelf
+          option(value=book) #{book}
+    div(class='views')
+      button(class="grid icon-th-large selectedview")
+      button(class="list icon-menu")    
 
   p Welcome to #{title}
   .wrapper
-    div(class='loading' style='display=none') Retrieving books...
     #bookshelf
+    div(id='loading') Retrieving books...

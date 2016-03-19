@@ -41,7 +41,7 @@ h1 {
 
 .filterbar {
   margin: 12px;
-  order: 2;  
+  order: 2;
 }
 
 .filterbar #filter {
@@ -61,70 +61,13 @@ h1 {
 
 .views .list {
   height: 30px;
-  border-radius: 0px 12px 12px 0px; 
+  border-radius: 0px 12px 12px 0px;
   margin-left: -1px;
 }
 
 .selectedview {
   background-color: gray;
-  color: #fff; 
-}
-
-#bookshelf.list > .book {
-  all: unset;
-  border-bottom: solid;
-  border-color: gray;
-  border-width: 1px;
-  float: left;
-  height: 132px;
-  margin: 0px;
-  width: 100%;
-}
-
-#bookshelf.list .add_to_cart {
-  display: none;
-  float: right;
-  position: relative;
-}
-
-#bookshelf.list .book:hover .add_to_cart{
-  display: block;
-}
-
-#bookshelf.list > .book:before {
-  all: unset;
-}
-
-#bookshelf.list .cover {
-  all: unset;
-  border-width: 1px;
-  border-style: solid;
-  border-color: gray;
-  float: left;
-  height: 100%;
-  left: 0px;
-  margin-right: 12px;
-  width: 100px; 
-}
-
-#bookshelf.list .title {
-  all: unset;
-  display: block;
-  font-size: 1.5em;
-  font-weight: bold;  
-  margin-bottom: 6px;
-}
-
-#bookshelf.list .author {
-  all: unset;
-  display: block;
-  margin-bottom: 6px;
-}
-
-#bookshelf.list .short_desc {
-  all: unset;
-  display: block;
-  float: left;
+  color: #fff;
 }
 
 .book {
@@ -136,8 +79,8 @@ h1 {
   height: 396px;
   margin: 10px;
   overflow: hidden;
-  position: relative; 
-  width: 250px; 
+  position: relative;
+  width: 250px;
 }
 
 .book:before {
@@ -149,8 +92,8 @@ h1 {
   left: 0;
   opacity: .8;
   position: absolute;
-  right: 0; 
-  top: 63%; 
+  right: 0;
+  top: 63%;
 }
 
 button {
@@ -170,17 +113,17 @@ button {
 
 button:hover {
   background-color: gray;
-  color: #fff; 
+  color: #fff;
 }
 
 button:active {
   background-color: #fff;
-  color: gray; 
+  color: gray;
 }
 
 .book > .add_to_cart {
   display: none;
-  left: 0px;
+  right: 0px;
   position: absolute;
   top: 0px;
 }
@@ -217,14 +160,13 @@ button:active {
 }
 
 .book > .short_desc {
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   display: -webkit-box;
   left: 10px;
   right: 10px;
-  overflow: hidden;
   position: absolute;
-  top: 77%; 
+  top: 77%;
 }
 
 .book > .long_desc {
@@ -232,7 +174,62 @@ button:active {
 }
 
 .genre {
-  display: none; 
+  display: none;
+}
+
+#bookshelf.list > .book {
+  border-radius: 0px;
+  border-bottom: solid;
+  border-color: gray;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-width: 1px;
+  height: 132px;
+  margin: 0px;
+  width: 100%;
+}
+
+#bookshelf.list > .book:before {
+  all: unset;
+}
+
+#bookshelf.list .cover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+  float: left;
+  height: 100%;
+  left: 0px;
+  margin-right: 12px;
+  width: 100px;
+}
+
+#bookshelf.list .title {
+  bottom: auto;
+  left: auto;
+  margin: 0px 0px 6px 6px;
+  position: relative;
+  right: auto;
+}
+
+#bookshelf.list .author {
+  bottom: auto;
+  display: block;
+  left: auto; 
+  margin-bottom: 6px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#bookshelf.list .short_desc {
+  -webkit-line-clamp: 3;
+  left: auto;
+  position: relative;
+  right: auto;
+  top: auto;
 }
 
 #overlay {
@@ -241,7 +238,7 @@ button:active {
   height: 100%;
   left: 0;
   opacity: 0.5;
-  position: fixed; 
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
@@ -252,11 +249,11 @@ button:active {
   border-radius: 14px;
   max-width: 768px;
   padding: 8px;
-  position: absolute; 
+  position: absolute;
   z-index: 3;
 }
 
-#content {  
+#content {
   background: #fff;
   border-radius: 8px;
   float: left;
@@ -268,7 +265,7 @@ button:active {
   height: 100%;
   margin-right: 20px;
   position: relative;
-  width: auto; 
+  width: auto;
 }
 
 #content > .title {
@@ -284,14 +281,14 @@ button:active {
   bottom: 0px;
   margin: 24px;
   position: absolute;
-  right: 0px; 
+  right: 0px;
 }
 
 #close {
   background: url(../images/close.png) 0 0 no-repeat;
   display: block;
   height: 27px;
-  position: absolute; 
+  position: absolute;
   right: -7px;
   text-indent: -9999px;
   top: -7px;

@@ -45,8 +45,9 @@ h1 {
 }
 
 .filterbar #filter {
-  width: 100%;
   border-radius: 6px;
+  outline: none;
+  width: 100%;
 }
 
 .views {
@@ -68,6 +69,55 @@ h1 {
 .selectedview {
   background-color: gray;
   color: #fff;
+}
+
+.loader {
+  top: 40%;
+  left: 50%;
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 72px auto;
+  position: fixed;
+  transform: translateZ(0);
+  animation: load6 1.7s infinite ease;
+  z-index: 1;
+}
+
+@keyframes load6 {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 -0.83em 0 -0.4em gray, 0 -0.83em 0 -0.42em gray, 0 -0.83em 0 -0.44em gray, 0 -0.83em 0 -0.46em gray, 0 -0.83em 0 -0.477em gray;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em gray, 0 -0.83em 0 -0.42em gray, 0 -0.83em 0 -0.44em gray, 0 -0.83em 0 -0.46em gray, 0 -0.83em 0 -0.477em gray;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em gray, -0.087em -0.825em 0 -0.42em gray, -0.173em -0.812em 0 -0.44em gray, -0.256em -0.789em 0 -0.46em gray, -0.297em -0.775em 0 -0.477em gray;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em gray, -0.338em -0.758em 0 -0.42em gray, -0.555em -0.617em 0 -0.44em gray, -0.671em -0.488em 0 -0.46em gray, -0.749em -0.34em 0 -0.477em gray;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em gray, -0.377em -0.74em 0 -0.42em gray, -0.645em -0.522em 0 -0.44em gray, -0.775em -0.297em 0 -0.46em gray, -0.82em -0.09em 0 -0.477em gray;
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 -0.83em 0 -0.4em gray, 0 -0.83em 0 -0.42em gray, 0 -0.83em 0 -0.44em gray, 0 -0.83em 0 -0.46em gray, 0 -0.83em 0 -0.477em gray;
+  }
+}
+
+#top {
+  border-radius: 50%;
+  bottom: 1%;
+  display: none;
+  position: fixed;
+  right: 1%;
 }
 
 .book {
@@ -263,18 +313,21 @@ button:active {
 #content > .cover {
   float: left;
   height: 100%;
-  margin-right: 20px;
-  position: relative;
-  width: auto;
+  margin-right: 20px;  
 }
 
 #content > .title {
+  display: inline;
   font-size: 1.5em;
   font-weight: bold;
 }
 
 #content > .short_desc {
   display: none;
+}
+
+#content > .long_desc {
+  display: block;
 }
 
 #content > .add_to_cart {

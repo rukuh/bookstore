@@ -45,7 +45,7 @@ var modal = (function(){
 
     $(window).bind('resize.modal', method.center);
 
-    $modal.fadeIn();
+    $modal.show();
     $overlay.show();
   };
   

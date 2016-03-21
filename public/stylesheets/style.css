@@ -229,7 +229,7 @@ button:active {
 
 #bookshelf.list > .book {
   border-radius: 0px;
-  border-bottom: dotted;
+  border-bottom: solid;
   border-color: gray;
   border-left: none;
   border-right: none;
@@ -237,7 +237,6 @@ button:active {
   border-width: 1px;
   height: 132px;
   margin: 0px;
-  padding: 10px 0px 10px 0px;
   width: 100%;
 }
 

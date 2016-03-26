@@ -61,7 +61,7 @@ function eventListeners() {
   // Event listener to close modal on esc
   $(document).on('keydown', function (e) {
     if ( e.keyCode === 27 ) { modal.close(); }
-  });  
+  });
 }
 
 window.onload = eventListeners;

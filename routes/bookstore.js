@@ -4,6 +4,9 @@ var router = express.Router();
 var app = express();
 app.use(express.static('public'));
 
-exports.home =  function(req, res) {
+// GET home page
+router.get('/', function(req, res, next) {
   res.render('index', { title: 'Luke\'s Bookstore' });
-};
+});
+
+module.exports = router;

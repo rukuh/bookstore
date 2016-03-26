@@ -1,22 +1,10 @@
 // Append HTML for bookshelves
-function Shelve(bookshelf,current,filter,search,load) {
+function Shelve(bookshelf) {
   $('.loader').show();
-  $.each(bookshelf.slice(current), function (key, data) {
-    if ( key < load ) {
-      // Append books if filter is set to All
-      if ( filter == 'Category' && ( data.title.toLowerCase().indexOf(search) != -1) ) { 
-        Render(data); 
-      }
-      // Append books if filter is set to other category
-      else if (data.genre == filter && ( data.title.toLowerCase().indexOf(search) != -1) ) {
-        Render(data);
-      }
-    } 
-    // Break .each if range is greater than 50
-    else { return false; }
+  $.each(bookshelf, function (key, data) {
+      Render(data);
   });
   $('.loader').hide();
-  return current+load;
 }
 
 // Create nodes and append to #bookshelf

@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 // Mongoose connection to MongoDB
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://ec2-52-207-210-128.compute-1.amazonaws.com/test');
  
 var db = mongoose.connection;
  

@@ -5,7 +5,7 @@ block content
   script(src='/javascripts/index.js')
   script(src='/javascripts/eventListeners.js')
   script(src='/javascripts/modal.js')
-  script(src='/javascripts/bookshelf.js')
+  script(src='/javascripts/catalog.js')
   script(src='/javascripts/delay.js')
   link(rel='stylesheet' href='/stylesheets/fontello.css')
 
@@ -19,10 +19,13 @@ block content
       select(id='filter')
         - var bookshelf = ['Category','Fantasy','Comedic Fiction', 'Erotica', 'Historical Fiction', 'Horror', 'Literary Fiction', 'New Adult', 'War/Military Fiction', 'Western', 'Women\'s Fiction','Mystery','Nonfiction','Romance','Science Fiction','Thriller','Young Adult']
         each book in bookshelf
-          option(value=book) #{book}
+          if book == 'Category'
+            option(value='') #{book}
+          else
+            option(value=book) #{book}
     div(class='views')
       button(class="grid icon-th-large selectedview")
-      button(class="list icon-menu")    
+      button(class="list icon-menu")
 
   p Welcome to #{title}
   .wrapper

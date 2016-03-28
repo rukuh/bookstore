@@ -4,13 +4,11 @@ $( function() {
 
   current = request( url, $( '#filter' ).val(), $( '#search' ).val(), current );
 
-  // Load books on scroll
-  $( window ).scroll( function() {
-    if ( $( window ).scrollTop() + $( window ).height() > $( document ).height() - 100 ) {
-      // Conditional to check for end of book collection
-      if ( $( '.fin' ).length === 0 ) {
+  // Load books on scroll with conditional to check for end of book collection
+  $( window ).data( 'ajaxready', true ).scroll( function() {
+    if ($(window).data('ajaxready') == false) return;
+    if ( $( window ).scrollTop() + $( window ).height() > $( document ).height() - 100 && $( '.fin' ).length === 0 ) {
         current = request( url, $( '#filter' ).val(), $( '#search' ).val(), current );
-      }
     }
   } );
 
@@ -34,9 +32,11 @@ $( function() {
 
 function request( url, category, search, current ) {
   // Render bookshelves in ajax callback due to asynchonous request
+  $(window).data('ajaxready', false);
   $.ajax( url + '/' + current + '?' + 'category=' + category + '&' + 'search=' + search )
   .done( function( responseJSON ) {
     Shelve( responseJSON );
+    $(window).data('ajaxready', true);
   } );
   return current+30;
 }

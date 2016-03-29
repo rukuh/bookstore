@@ -1,5 +1,5 @@
 // Render bookshelves in ajax callback due to async
-function request( url, current, data ) {
+function request( url, current, data) {
   // Prevent multiple ajax queries if already in process
   $(window).data('ajaxready', false);
   $.ajax( {
@@ -7,7 +7,7 @@ function request( url, current, data ) {
   	data: data
   } ).
   done( function( responseJSON ) {
-    Shelve( responseJSON, '#bookshelf' );
+    Shelve( responseJSON, '', '#bookshelf' );
     $(window).data('ajaxready', true);
   } );
   return current+30;
@@ -30,7 +30,7 @@ function showcart( data ) {
     if ( response.length === 0 ) {
       $('#sidecart').append('<p>Your cart is empty.</p>');
     } else {
-      Shelve( response, '#sidecart' );
+      Shelve( response, data, '#sidecart' );
     }
   } );
 }

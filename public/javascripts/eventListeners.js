@@ -25,7 +25,7 @@ $( 'nav' ).on( 'click', '.listlabel', function( event ) {
 
 // Event listener for cart view
 $( 'nav' ).data( 'ajaxready', true).on( 'click', '.cartlabel', function( event ) {
-  if ($(window).data('ajaxready') == false) return;
+  if ($(window).data('ajaxready') == false || $( '#cart' ).is( ":checked" )) return;
   showcart(cart);
 } );
 
@@ -36,9 +36,9 @@ $( '#top' ).click( function() {
 } );
 
 // Event listener to handle add to cart actions
-$( '.wrapper' ).on( 'click', '.add_to_cart', function( event ) {
+$( '.wrapper' ).on( 'click', '.add_to_cart,.icon-plus', function( event ) {
   event.stopPropagation();
-  cart.push( $( this ).parent().find( '.id' ).text());
+  cart.push( $( this ).parent().find( '.id' ).text() );
   modal.open( { content: "Added to cart" } );
   console.log(cart);
   window.atc = setTimeout( function() {
@@ -47,6 +47,26 @@ $( '.wrapper' ).on( 'click', '.add_to_cart', function( event ) {
   if ($(window).data('ajaxready') == false) return;
   showcart(cart);
 } );
+
+// Event listener to handle remove from cart actions
+$( '.wrapper' ).on( 'click', '.icon-minus', function( event ) {
+  event.stopPropagation();
+  cart.splice(cart.indexOf($( this ).parent().find( '.id' ).text()), 1);
+  modal.open( { content: "Removed from cart" } );
+  console.log(cart);
+  window.atc = setTimeout( function() {
+    modal.close();
+  }, 3000 );
+  if ($(window).data('ajaxready') == false) return;
+  showcart(cart);
+} );
+
+// Event listener to close modal on click outside
+/*$(document).on('click', function(event) {
+  if (!$(event.target).closest('#sidecart').length || !$(event.target).closest('.cartlabel').length) {
+    $('#cart').removeAttr('checked');
+  }
+});*/
 
 // Event listener to close modal on click outside
 $( '#overlay' ).click( function() {

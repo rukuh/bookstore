@@ -25,17 +25,12 @@ block content
           else
             option(value=book) #{book}
     div(class='views')
-      //button(class="grid icon-th-large selectedview")
-      //button(class="list icon-menu")
-
       input(type='radio', name='views', value='list', id='grid', checked='checked')
-      label(class='gridlabel icon-th-large', for='grid')
-
+      label(class='gridlabel icon-grid', for='grid')
       input(type='radio', name='views', value='', id='list')
-      label(class='listlabel icon-menu', for='list')
-
+      label(class='listlabel icon-list', for='list')
     div(class='cartdiv')
-      label(class='cartlabel icon-basket',for ='cart')
+      label(class='cartlabel icon-cart',for ='cart')
 
   p Welcome to #{title}
   .wrapper

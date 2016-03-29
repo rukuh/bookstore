@@ -1,5 +1,5 @@
 // Append HTML for bookshelves
-function Shelve( bookshelf, target ) {
+function Shelve( bookshelf, cart, target ) {
   $( '.loader' ).show();
   // Conditional to check for empty response denoting end
   if ( bookshelf.length == 0 ){
@@ -13,14 +13,14 @@ function Shelve( bookshelf, target ) {
     $( '#bookshelf' ).detach().append( '<div class="fin"></div>' ).appendTo( $( '.wrapper' ) );
   } else {
     $.each( bookshelf, function( key, data ) {
-        Render( data, target );
+        Render( data, cart, target );
     } );
   }
   $( '.loader' ).hide();
 }
 
 // Create nodes and append to target
-function Render( data, target ) {
+function Render( data, cart, target ) {
   var book = $( '<div class="book">' +
     '<div class="id">' + data._id + '</div>' +
     '<img class="cover" src=' + data.cover + '>' +
@@ -29,7 +29,17 @@ function Render( data, target ) {
     '<div class="short_desc">' + data.short_desc + '</div>' +
     '<div class="long_desc">' + data.long_desc + '</div>' +
     '<div class="genre">' + data.genre + '</div>' +
-    '<button class="add_to_cart icon-basket"></button>' +
     '</div>');
+  if ( target == '#bookshelf') {
+    book.append('<button class="add_to_cart icon-cart"></button>');
+  }
+  if ( target == '#sidecart') {
+    var count = cart.reduce(function(n, val) {
+      return n + (val === data._id);
+    }, 0);
+    book.append('<div class="quantity">Quantity: ' + count + '</div>');
+    book.append('<button class="icon-plus"></button>');
+    book.append('<button class="icon-minus"></button>');
+  }
   $( target ).detach().append( book ).appendTo( $( '.wrapper' ) );
 }

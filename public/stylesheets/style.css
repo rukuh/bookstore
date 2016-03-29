@@ -196,6 +196,18 @@ button {
   top: 0px;
 }
 
+.book > .icon-plus {
+  right: 0px;
+  position: absolute;
+  top: 0px;
+}
+
+.book > .icon-minus {
+  right: 0px;
+  position: absolute;
+  bottom: 0px;
+}
+
 .book:hover .add_to_cart{
   display: block;
 }

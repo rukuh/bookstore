@@ -14,17 +14,19 @@ $( window ).scroll( function() {
 } );
 
 // Event listener for grid view
-$( 'nav' ).on( 'click', '.grid', function( event ) {
+$( 'nav' ).on( 'click', '.gridlabel', function( event ) {
   $( '#bookshelf' ).removeClass( 'list' );
-  $( 'button.grid' ).addClass( 'selectedview' );
-  $( 'button.list' ).removeClass( 'selectedview' );
 } );
 
 // Event listener for list view
-$( 'nav' ).on( 'click', '.list', function( event ) {
+$( 'nav' ).on( 'click', '.listlabel', function( event ) {
   $( '#bookshelf' ).addClass( 'list' );
-  $( 'button.list' ).addClass( 'selectedview' );
-  $( 'button.grid' ).removeClass( 'selectedview' );
+} );
+
+// Event listener for cart view
+$( 'nav' ).data( 'ajaxready', true).on( 'click', '.cartlabel', function( event ) {
+  if ($(window).data('ajaxready') == false) return;
+  showcart(cart);
 } );
 
 // Event listener to scroll to top
@@ -37,11 +39,13 @@ $( '#top' ).click( function() {
 $( '.wrapper' ).on( 'click', '.add_to_cart', function( event ) {
   event.stopPropagation();
   cart.push( $( this ).parent().find( '.id' ).text());
-  console.log( cart );
   modal.open( { content: "Added to cart" } );
+  console.log(cart);
   window.atc = setTimeout( function() {
     modal.close();
   }, 3000 );
+  if ($(window).data('ajaxready') == false) return;
+  showcart(cart);
 } );
 
 // Event listener to close modal on click outside

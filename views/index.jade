@@ -7,6 +7,7 @@ block content
   script(src='/javascripts/modal.js')
   script(src='/javascripts/catalog.js')
   script(src='/javascripts/delay.js')
+  script(src='/javascripts/request.js')
   link(rel='stylesheet' href='/stylesheets/fontello.css')
 
   <noscript> For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
@@ -24,11 +25,22 @@ block content
           else
             option(value=book) #{book}
     div(class='views')
-      button(class="grid icon-th-large selectedview")
-      button(class="list icon-menu")
+      //button(class="grid icon-th-large selectedview")
+      //button(class="list icon-menu")
+
+      input(type='radio', name='views', value='list', id='grid', checked='checked')
+      label(class='gridlabel icon-th-large', for='grid')
+
+      input(type='radio', name='views', value='', id='list')
+      label(class='listlabel icon-menu', for='list')
+
+    div(class='cartdiv')
+      label(class='cartlabel icon-basket',for ='cart')
 
   p Welcome to #{title}
   .wrapper
     div(class='loader')
     #bookshelf
+    input(id="cart", type='checkbox')
+    #sidecart(class='list')
     button(id='top', class='icon-up', href='#top')

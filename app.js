@@ -6,8 +6,10 @@ var cookieParser = require( 'cookie-parser' );
 var bodyParser = require( 'body-parser' );
 var mongoose = require( 'mongoose' );
 
+var db = require( './routes/db' );
 var bookstore = require( './routes/bookstore' );
-var books = require( './routes/books' );
+var bookshelf = require( './routes/bookshelf' );
+var cart = require( './routes/cart' );
 
 var app = express();
 
@@ -24,7 +26,8 @@ app.use( cookieParser() );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 app.use( '/', bookstore );
-app.use( '/books', books );
+app.use( '/books', bookshelf );
+app.use( '/cart', cart );
 
 // catch 404 and forward to error handler
 app.use( function( req, res, next ) {

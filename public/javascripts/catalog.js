@@ -1,7 +1,7 @@
 // Append HTML for bookshelves
-function Shelve( bookshelf ) {
+function Shelve( bookshelf, target ) {
   $( '.loader' ).show();
-  // Conditional to check for end empty response
+  // Conditional to check for empty response denoting end
   if ( bookshelf.length == 0 ){
     if ( $( '#search' ).val() != '' && $( '.book' ).length == 0 ) {
       modal.open( { content: "There are no books with '" + $( '#search' ).val() + "' in the title." } );
@@ -13,14 +13,14 @@ function Shelve( bookshelf ) {
     $( '#bookshelf' ).detach().append( '<div class="fin"></div>' ).appendTo( $( '.wrapper' ) );
   } else {
     $.each( bookshelf, function( key, data ) {
-        Render( data );
+        Render( data, target );
     } );
   }
   $( '.loader' ).hide();
 }
 
-// Create nodes and append to #bookshelf
-function Render( data ) {
+// Create nodes and append to target
+function Render( data, target ) {
   var book = $( '<div class="book">' +
     '<div class="id">' + data._id + '</div>' +
     '<img class="cover" src=' + data.cover + '>' +
@@ -31,5 +31,5 @@ function Render( data ) {
     '<div class="genre">' + data.genre + '</div>' +
     '<button class="add_to_cart icon-basket"></button>' +
     '</div>');
-  $( '#bookshelf' ).detach().append( book ).appendTo( $( '.wrapper' ) );
+  $( target ).detach().append( book ).appendTo( $( '.wrapper' ) );
 }

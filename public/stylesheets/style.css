@@ -55,15 +55,44 @@ h1 {
   order: 2;
 }
 
-.views .grid {
-  height: 30px;
+.gridlabel {
   border-radius: 12px 0px 0px 12px;
 }
 
-.views .list {
-  height: 30px;
+.listlabel {
   border-radius: 0px 12px 12px 0px;
-  margin-left: -1px;
+  margin-left: -2px;
+}
+
+input[type=radio] {
+   display: none;
+}
+
+input:checked + label {
+  background-color: gray;
+  color: #fff;
+}
+
+.cartdiv {
+  margin-right: 12px;
+  order: 3;
+}
+
+label  {
+  background-color: #fff;
+  border: 2px solid gray;
+  border-radius: 12px;
+  color: gray;
+  padding: .7px 10px 2.667px 10px;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+label:hover, button:hover {
+  background-color: #C0C0C0;
+  color: #fff;
 }
 
 .selectedview {
@@ -152,23 +181,12 @@ button {
   width: 50px;
   height: 50px;
   color: gray;
-  font-weight: bold;
   outline: none;
 }
 
 .add_to_cart {
   border-radius: 50%;
   margin: 6px;
-}
-
-button:hover {
-  background-color: gray;
-  color: #fff;
-}
-
-button:active {
-  background-color: #fff;
-  color: gray;
 }
 
 .book > .add_to_cart {
@@ -227,7 +245,7 @@ button:active {
   display: none;
 }
 
-#bookshelf.list > .book {
+.list > .book {
   border-radius: 0px;
   border-bottom: solid;
   border-color: gray;
@@ -240,11 +258,11 @@ button:active {
   width: 100%;
 }
 
-#bookshelf.list > .book:before {
+.list > .book:before {
   all: unset;
 }
 
-#bookshelf.list .cover {
+.list .cover {
   border-width: 1px;
   border-style: solid;
   border-color: gray;
@@ -255,7 +273,7 @@ button:active {
   width: 100px;
 }
 
-#bookshelf.list .title {
+.list .title {
   bottom: auto;
   left: auto;
   margin: 0px 0px 6px 6px;
@@ -263,10 +281,10 @@ button:active {
   right: auto;
 }
 
-#bookshelf.list .author {
+.list .author {
   bottom: auto;
   display: block;
-  left: auto; 
+  left: auto;
   margin-bottom: 6px;
   overflow: hidden;
   position: relative;
@@ -274,12 +292,34 @@ button:active {
   white-space: nowrap;
 }
 
-#bookshelf.list .short_desc {
+.list .short_desc {
   -webkit-line-clamp: 3;
   left: auto;
   position: relative;
   right: auto;
   top: auto;
+}
+
+#sidecart {
+  display: none;
+  background-color: white;
+  border-style: dotted none none dotted;
+  border-width: 1px;
+  width: 50%;
+  position: fixed;
+  top: 100px;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+#sidecart > p {
+  margin-left: 20px;
+}
+
+input[type='checkbox']:checked ~ #sidecart {
+  display: block
 }
 
 #overlay {
@@ -313,7 +353,7 @@ button:active {
 #content > .cover {
   float: left;
   height: 100%;
-  margin-right: 20px;  
+  margin-right: 20px;
 }
 
 #content > .title {

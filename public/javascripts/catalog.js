@@ -41,7 +41,7 @@ function Render( data, cart, target ) {
     var count = cart.reduce( function( n, val ) {
       return n + ( val === data._id );
     }, 0 );
-    book.append( '<input class="quantity" type="text" value=' + count + '>' );
+    book.append( '<input class="quantity" type="text" readonly="readonly" value=' + count + '>' );
     book.append( '<button class="icon-plus"></button>' );
     book.append( '<button class="icon-minus"></button>' );
   }

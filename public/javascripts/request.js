@@ -14,9 +14,9 @@ function request( url, current, data) {
 }
 
 // Render cart in ajax callback due to async
-function showcart( data ) {
+function postCart( data ) {
+  $( '#side-cart > .book' ).remove();
   // Prevent multiple ajax queries if already in process
-  $( '#sidecart' ).empty();
   $( window ).data('ajaxready', false);
   $.ajax( {
     url: '/cart',
@@ -28,9 +28,10 @@ function showcart( data ) {
   done( function( response ) {
     $(window).data('ajaxready', true);
     if ( response.length === 0 ) {
-      $('#sidecart').append('<p>Your cart is empty.</p>');
+      $('#side-cart > p').show();
     } else {
-      Shelve( response, data, '#sidecart' );
+      $('#side-cart > p').hide();
+      Shelve( response, data, '#side-cart' );
     }
   } );
 }

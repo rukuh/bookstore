@@ -29,37 +29,37 @@ h1 {
   margin: 12px;
 }
 
-.searchbar {
+.search-container {
   flex: 1;
   margin: 12px;
   order: 1;
 }
 
-.searchbar #search {
+.search-container #search {
   width: 100%;
 }
 
-.filterbar {
+.filter-container {
   margin: 12px;
   order: 2;
 }
 
-.filterbar #filter {
+.filter-container #filter {
   border-radius: 6px;
   outline: none;
   width: 100%;
 }
 
-.views {
+.view-container {
   margin: 12px;
   order: 2;
 }
 
-.gridlabel {
+.icon-grid {
   border-radius: 12px 0px 0px 12px;
 }
 
-.listlabel {
+.icon-list {
   border-radius: 0px 12px 12px 0px;
   margin-left: -2px;
 }
@@ -73,7 +73,7 @@ input:checked + label {
   color: #fff;
 }
 
-.cartdiv {
+.cart-container {
   margin-right: 12px;
   order: 3;
 }
@@ -312,25 +312,36 @@ button {
   top: auto;
 }
 
-#sidecart {
+#side-cart {
   display: none;
   background-color: white;
-  border-style: dotted none none dotted;
+  border-top-left-radius: 6px;
+  border-style: outset none none outset;
   border-width: 1px;
   width: 50%;
   position: fixed;
   top: 100px;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 3;
   overflow-y: auto;
+  opacity: 0.96;
 }
 
-#sidecart > p {
+#cart-title {
+  display: block;
+  font-size: 2em;
+  margin: 0.67em 0em 0.67em 0em;
+  font-weight: bold;
+  text-align: center;
+}
+
+#cart-empty {
+  display: none;
   margin-left: 20px;
 }
 
-input[type='checkbox']:checked ~ #sidecart {
+input[type='checkbox']:checked ~ #side-cart {
   display: block
 }
 

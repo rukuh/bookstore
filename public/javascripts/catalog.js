@@ -1,14 +1,18 @@
 // Append HTML for bookshelves
 function Shelve( bookshelf, cart, target ) {
+  clearTimeout( window.atc );
   $( '.loader' ).show();
+
   // Conditional to check for empty response denoting end
-  if ( bookshelf.length == 0 ){
-    if ( $( '#search' ).val() != '' && $( '.book' ).length == 0 ) {
+  if ( bookshelf.length === 0 ) {
+    // Conditional to notify user if there are no books found containing search string
+    if ( $( '#search' ).val() !== '' && $( '.book' ).length === 0 ) {
       modal.open( { content: "There are no books with '" + $( '#search' ).val() + "' in the title." } );
     }
-    window.atc = setTimeout( function(){
+    window.atc = setTimeout( function() {
       modal.close();
     }, 3000 );
+
     // Create node that acts as indicator for end of book collection
     $( '#bookshelf' ).detach().append( '<div class="fin"></div>' ).appendTo( $( '.wrapper' ) );
   } else {
@@ -30,16 +34,16 @@ function Render( data, cart, target ) {
     '<div class="long_desc">' + data.long_desc + '</div>' +
     '<div class="genre">' + data.genre + '</div>' +
     '</div>');
-  if ( target == '#bookshelf') {
-    book.append('<button class="add_to_cart icon-cart"></button>');
+  if ( target === '#bookshelf' ) {
+    book.append( '<button class="add_to_cart icon-cart"></button>' );
   }
-  if ( target == '#sidecart') {
-    var count = cart.reduce(function(n, val) {
-      return n + (val === data._id);
-    }, 0);
-    book.append('<div class="quantity">Quantity: ' + count + '</div>');
-    book.append('<button class="icon-plus"></button>');
-    book.append('<button class="icon-minus"></button>');
+  if ( target === '#side-cart' ) {
+    var count = cart.reduce( function( n, val ) {
+      return n + ( val === data._id );
+    }, 0 );
+    book.append( '<div class="quantity">' + count + '</div>' );
+    book.append( '<button class="icon-plus"></button>' );
+    book.append( '<button class="icon-minus"></button>' );
   }
   $( target ).detach().append( book ).appendTo( $( '.wrapper' ) );
 }

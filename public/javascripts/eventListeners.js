@@ -25,7 +25,6 @@ $( '.icon-list' ).click( function() {
 
 // Event listener to display cart sidebar
 $( '.icon-cart' ).data( 'ajaxready', true ).click( function() {
-
   // Prevent concurrent ajax requests
   if ( $( window ).data( 'ajaxready' ) === false || $( '#cart' ).checked ) return;
   clearTimeout( window.atc );
@@ -34,13 +33,13 @@ $( '.icon-cart' ).data( 'ajaxready', true ).click( function() {
 } );
 
 // Event listener for top button
-$( '#top' ).click( function() {
+$( '.icon-up' ).click( function() {
   $( 'html, body' ).animate( { scrollTop: 0 }, 'fast' );
 } );
 
 // Event listener for add to cart actions
-$( '.wrapper' ).on( 'click', '.add_to_cart', function() {
-  if ( $( window ).data( 'ajaxready' ) === false ) return;
+$( '.wrapper' ).on( 'click', '.icon-cart', function() {
+  event.stopPropagation();
   clearTimeout( window.atc );
   $( '#cart-empty' ).hide();
 
@@ -52,27 +51,33 @@ $( '.wrapper' ).on( 'click', '.add_to_cart', function() {
   }, 3000 );
 } );
 
+// Event listener for collapsing the cart sidebar
+$( '.icon-right' ).click( function() {
+  modal.close();
+  $('#cart').prop('checked', false);
+} );
+
 // Event listener for increment quantity button
 $( '#side-cart' ).on( 'click', '.icon-plus', function() {
   // Increment quantity
-  $( this ).siblings( '.quantity' ).text( parseInt( $( this ).siblings( '.quantity' ).text() ) + 1);
+  $( this ).siblings( '.quantity' ).val( parseInt( $( this ).siblings( '.quantity' ).val() ) + 1);
 
   // Add book id to cart variable on increment
   cart.push( $( this ).siblings( '.id' ).text() );
 } );
 
 // Event listener for decrement quantity button
-$( '#side-cart' ).on( 'click', '.icon-minus', function() {
+$( '#side-cart' ).on( 'click', '.icon-minus', function(event) {
   event.stopPropagation();
 
   // Decrement quantity
-  $( this ).siblings( '.quantity' ).text( parseInt( $( this ).siblings( '.quantity' ).text() ) - 1);
+  $( this ).siblings( '.quantity' ).val( parseInt( $( this ).siblings( '.quantity' ).val() ) - 1);
 
   // Remove book id from cart variable on decrement
   cart.splice( cart.indexOf( $( this ).siblings( '.id' ).text() ), 1 );
 
   // Conditional to remove book node from cart if quantity is zero
-  if ( $( this ).siblings( '.quantity' ).text() == 0 ) {
+  if ( $( this ).siblings( '.quantity' ).val() == 0 ) {
     $( this ).parent().remove();
   }
 
@@ -100,10 +105,11 @@ $( '#bookshelf' ).on( 'click', '.book', function() {
   } );
 } );
 
-// Event listener to close modal on esc
+// Event listener to close modal and cart sidebar on esc
 $( document ).on( 'keydown', function( event ) {
   if ( event.keyCode === 27 ) {
     modal.close();
+    $('#cart').prop('checked', false);
   }
 } );
 }

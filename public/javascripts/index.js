@@ -1,14 +1,15 @@
 $( function() {
   var current = 0;
-  var url = '/books/';
 
-  current = request( url, current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val() );
+  // Initial load
+  current = request( '/books/', current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val() );
 
   // Load books on scroll with conditional to check for end of book collection
   $( window ).data( 'ajaxready', true ).scroll( function() {
-    if ($(window).data('ajaxready') == false) return;
+    // Prevent concurrent ajax requests
+    if ( $( window ).data( 'ajaxready' ) === false) return;
     if ( $( window ).scrollTop() + $( window ).height() > $( document ).height() - 100 && $( '.fin' ).length === 0 ) {
-      current = request( url , current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val() );
+      current = request( '/books/' , current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val() );
     }
   } );
 
@@ -16,7 +17,7 @@ $( function() {
   $( '#filter' ).change( function() {
     $( '#bookshelf' ).empty();
     current = 0;
-    current = request( url, current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val());
+    current = request( '/books/', current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val());
   } );
 
   // Load books on search
@@ -25,7 +26,7 @@ $( function() {
     delay( function() {
       $( '#bookshelf' ).empty();
       current = 0;
-      current = request( url, current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val());
+      current = request( '/books/', current, 'category=' + $( '#filter' ).val() + '&search=' + $( '#search' ).val());
     }, 500 );
   } );
 } );

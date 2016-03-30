@@ -14,6 +14,7 @@ block content
 
   nav
     h1= title
+    span by Luke
     div( class = 'search-container' )
       input( id = 'search', type = 'text', placeholder = 'Search...', value = '' )
     div( class = 'filter-container' )
@@ -32,12 +33,12 @@ block content
     div( class = 'cart-container' )
       label( class = 'icon-cart', for = 'cart' )
 
-  p Welcome to #{ title }
   .wrapper
     div( class = 'loader' )
     #bookshelf
     input( id = 'cart', type = 'checkbox' )
     #side-cart( class = 'list' )
-      div( id = 'cart-title' ) Shopping Cart
-      div( id = 'cart-empty' ) Your cart is empty
+      button( class = 'icon-right' )
+      div( id = 'cart-title' ) Book Bag
+      div( id = 'cart-empty' ) Your book bag is empty.
     button( id = 'top', class = 'icon-up', href = '#top' )

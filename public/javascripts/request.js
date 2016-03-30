@@ -1,7 +1,7 @@
-// Render bookshelves in ajax callback due to async
+// Render bookshelf in ajax callback due to async
 function request( url, current, data) {
-  // Prevent multiple ajax queries if already in process
-  $(window).data('ajaxready', false);
+  // Prevent concurrent ajax requests
+  $( window ).data( 'ajaxready', false );
   $.ajax( {
   	url: url + current,
   	data: data
@@ -10,14 +10,14 @@ function request( url, current, data) {
     Shelve( responseJSON, '', '#bookshelf' );
     $(window).data('ajaxready', true);
   } );
-  return current+30;
+  return current + 30;
 }
 
 // Render cart in ajax callback due to async
 function postCart( data ) {
+  // Prevent concurrent ajax requests
+  $( window ).data( 'ajaxready' , false );
   $( '#side-cart > .book' ).remove();
-  // Prevent multiple ajax queries if already in process
-  $( window ).data('ajaxready', false);
   $.ajax( {
     url: '/cart',
     type: 'POST',
@@ -26,12 +26,12 @@ function postCart( data ) {
     processData: false
   } ).
   done( function( response ) {
-    $(window).data('ajaxready', true);
     if ( response.length === 0 ) {
-      $('#side-cart > p').show();
+      $( '#cart-empty' ).show();
     } else {
-      $('#side-cart > p').hide();
+      $( '#cart-empty' ).hide();
       Shelve( response, data, '#side-cart' );
     }
+    $( window ).data( 'ajaxready', true );
   } );
 }

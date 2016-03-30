@@ -35,13 +35,13 @@ function Render( data, cart, target ) {
     '<div class="genre">' + data.genre + '</div>' +
     '</div>');
   if ( target === '#bookshelf' ) {
-    book.append( '<button class="add_to_cart icon-cart"></button>' );
+    book.append( '<button class="icon-cart"></button>' );
   }
   if ( target === '#side-cart' ) {
     var count = cart.reduce( function( n, val ) {
       return n + ( val === data._id );
     }, 0 );
-    book.append( '<div class="quantity">' + count + '</div>' );
+    book.append( '<input class="quantity" type="text" value=' + count + '>' );
     book.append( '<button class="icon-plus"></button>' );
     book.append( '<button class="icon-minus"></button>' );
   }

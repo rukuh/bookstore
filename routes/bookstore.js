@@ -6,7 +6,7 @@ app.use( express.static( 'public' ) );
 
 // GET home page
 router.get( '/', function( req, res, next ) {
-  res.render( 'index', { title: 'Luke\'s Bookstore' } );
+  res.render( 'index', { title: 'Bookstore' } );
 } );
 
 module.exports = router;

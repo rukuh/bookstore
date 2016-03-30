@@ -1,17 +1,13 @@
-/* top right bottom left */
-
 @font-face {
   font-family: SegoeUI_SL;
   src: url(segoeuisl.ttf);
 }
-
 body {
   background-attachment: fixed;
   background-image: url(../images/background.jpg);
   font-family: SegoeUI_SL;
   padding: 48px;
 }
-
 nav {
   align-items: center;
   background-image: url(../images/background.jpg);
@@ -23,99 +19,85 @@ nav {
   width: 100%;
   z-index: 1;
 }
-
 h1 {
-  order: 0;
   margin: 12px;
+  order: 0;
 }
 
+span {
+  font-size: 12px;
+}
 .search-container {
   flex: 1;
   margin: 12px;
   order: 1;
 }
-
-.search-container #search {
+#search {
   width: 100%;
 }
-
 .filter-container {
   margin: 12px;
   order: 2;
 }
-
-.filter-container #filter {
+#filter {
   border-radius: 6px;
   outline: none;
   width: 100%;
 }
-
 .view-container {
   margin: 12px;
   order: 2;
 }
-
 .icon-grid {
   border-radius: 12px 0px 0px 12px;
 }
-
 .icon-list {
   border-radius: 0px 12px 12px 0px;
   margin-left: -2px;
 }
-
-input[type=radio] {
-   display: none;
+input[type=radio],
+input[type='checkbox'],
+.id,
+.book > .long_desc,
+.genre,
+#content > .short_desc {
+  display: none;
 }
-
+label:hover,
+button:hover {
+  background-color: #C0C0C0;
+  color: #fff;
+}
 input:checked + label {
   background-color: gray;
   color: #fff;
 }
-
 .cart-container {
   margin-right: 12px;
   order: 3;
 }
-
-label  {
+label {
   background-color: #fff;
   border: 2px solid gray;
   border-radius: 12px;
   color: gray;
   padding: .7px 10px 2.667px 10px;
 }
-
-input[type='checkbox'] {
-  display: none;
-}
-
-label:hover, button:hover {
-  background-color: #C0C0C0;
-  color: #fff;
-}
-
-.selectedview {
-  background-color: gray;
-  color: #fff;
-}
-
 .loader {
-  top: 40%;
-  left: 50%;
-  font-size: 90px;
-  text-indent: -9999em;
-  overflow: hidden;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  margin: 72px auto;
-  position: fixed;
-  transform: translateZ(0);
   animation: load6 1.7s infinite ease;
+  border-radius: 50%;
+  font-size: 90px;
+  height: 1em;
+  left: 50%;
+  margin: 72px auto;
+  overflow: hidden;
+  position: fixed;
+  text-indent: -9999em;
+  top: 40%;
+  transform: translateZ(0);
+  width: 1em;
   z-index: 1;
 }
-
 @keyframes load6 {
   0% {
     transform: rotate(0deg);
@@ -140,18 +122,16 @@ label:hover, button:hover {
     box-shadow: 0 -0.83em 0 -0.4em gray, 0 -0.83em 0 -0.42em gray, 0 -0.83em 0 -0.44em gray, 0 -0.83em 0 -0.46em gray, 0 -0.83em 0 -0.477em gray;
   }
 }
-
-#top {
+.icon-up {
   border-radius: 50%;
   bottom: 1%;
   display: none;
   position: fixed;
   right: 1%;
 }
-
 .book {
-  border-radius: 10px;
   border-color: gray;
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
   float: left;
@@ -161,10 +141,9 @@ label:hover, button:hover {
   position: relative;
   width: 250px;
 }
-
 .book:before {
   -webkit-filter: blur(2px);
-  background-image: linear-gradient(to bottom right, white, white);
+  background-color: white;
   border-radius: 0px 0px 10px 10px;
   bottom: 0px;
   content: '';
@@ -174,53 +153,29 @@ label:hover, button:hover {
   right: 0;
   top: 63%;
 }
-
 button {
   background-color: #fff;
   border: 2px solid gray;
-  width: 50px;
-  height: 50px;
   color: gray;
+  height: 50px;
   outline: none;
+  width: 50px;
 }
-
-.add_to_cart {
+.book > .icon-cart {
   border-radius: 50%;
-  margin: 6px;
-}
-
-.book > .add_to_cart {
   display: none;
+  margin: 6px;
   right: 0px;
   position: absolute;
   top: 0px;
 }
-
-.book > .icon-plus {
-  right: 0px;
-  position: absolute;
-  top: 0px;
-}
-
-.book > .icon-minus {
-  right: 0px;
-  position: absolute;
-  bottom: 0px;
-}
-
-.book:hover .add_to_cart{
+.book:hover > .icon-cart {
   display: block;
 }
-
-.id {
-  display: none;
-}
-
 .book > .cover {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
-
 .book > .title {
   bottom: 28%;
   font-size: 1.5em;
@@ -232,13 +187,11 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .book > .author {
   bottom: 23%;
   left: 20px;
   position: absolute;
 }
-
 .book > .short_desc {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
@@ -248,15 +201,6 @@ button {
   position: absolute;
   top: 77%;
 }
-
-.book > .long_desc {
-  display: none;
-}
-
-.genre {
-  display: none;
-}
-
 .list > .book {
   border-radius: 0px;
   border-bottom: solid;
@@ -269,11 +213,9 @@ button {
   margin: 0px;
   width: 100%;
 }
-
 .list > .book:before {
   all: unset;
 }
-
 .list .cover {
   border-width: 1px;
   border-style: solid;
@@ -284,7 +226,6 @@ button {
   margin-right: 12px;
   width: 100px;
 }
-
 .list .title {
   bottom: auto;
   left: auto;
@@ -292,7 +233,6 @@ button {
   position: relative;
   right: auto;
 }
-
 .list .author {
   bottom: auto;
   display: block;
@@ -303,7 +243,6 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .list .short_desc {
   -webkit-line-clamp: 3;
   left: auto;
@@ -311,40 +250,77 @@ button {
   right: auto;
   top: auto;
 }
-
-#side-cart {
-  display: none;
-  background-color: white;
-  border-top-left-radius: 6px;
-  border-style: outset none none outset;
-  border-width: 1px;
-  width: 50%;
-  position: fixed;
-  top: 100px;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  overflow-y: auto;
-  opacity: 0.96;
+input[type='checkbox']:checked ~ #side-cart {
+  display: block
 }
-
+#side-cart {
+  background-image: url(../images/background.jpg);
+  border-left-style: outset;
+  border-width: 1px;
+  bottom: 0;
+  display: none;
+  overflow-y: auto;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 50%;
+  z-index: 3;
+}
+.icon-right {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+}
 #cart-title {
+  background-image: linear-gradient(to bottom, #C0C0C0, transparent);
   display: block;
   font-size: 2em;
-  margin: 0.67em 0em 0.67em 0em;
   font-weight: bold;
+  padding: 0.67em 0em 0.67em 0em;
   text-align: center;
 }
-
 #cart-empty {
   display: none;
   margin-left: 20px;
 }
-
-input[type='checkbox']:checked ~ #side-cart {
-  display: block
+#side-cart img {
+  margin-left: 68px;
 }
-
+.icon-plus {
+  border-radius: 50%;
+  height: 20px;
+  margin: 24px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 20px;
+}
+.icon-plus:before {
+  margin: 0px 0px 0px -4.5px !important;
+}
+.quantity {
+  background: transparent;
+  border-color: gray;
+  border-style: solid;
+  position: absolute;
+  left: 17px;
+  text-align: center;
+  top: 55px;
+  width: 30px;
+}
+.icon-minus {
+  border-radius: 50%;
+  height: 20px;
+  margin: 24px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 20px;
+}
+.icon-minus:before {
+  margin: 0px 0px 0px -4.5px !important;
+}
 #overlay {
   background: #000;
   filter: alpha(opacity=50);
@@ -356,50 +332,40 @@ input[type='checkbox']:checked ~ #side-cart {
   width: 100%;
   z-index: 2;
 }
-
 #modal {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 14px;
   max-width: 768px;
   padding: 8px;
   position: absolute;
   z-index: 3;
 }
-
 #content {
   background: #fff;
   border-radius: 8px;
   float: left;
   padding: 20px;
 }
-
 #content > .cover {
   float: left;
   height: 100%;
   margin-right: 20px;
 }
-
 #content > .title {
   display: inline;
   font-size: 1.5em;
   font-weight: bold;
 }
-
-#content > .short_desc {
-  display: none;
-}
-
 #content > .long_desc {
   display: block;
 }
-
-#content > .add_to_cart {
+#content > .icon-cart {
+  border-radius: 50%;
   bottom: 0px;
   margin: 24px;
   position: absolute;
   right: 0px;
 }
-
 #close {
   background: url(../images/close.png) 0 0 no-repeat;
   display: block;

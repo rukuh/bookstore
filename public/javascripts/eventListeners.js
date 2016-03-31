@@ -84,7 +84,7 @@ $( '.wrapper' ).on( 'click', '.icon-cart', function() {
     cart.push( item );
   }
   clearTimeout( window.atc );
-  modal.open( { content: "Added to cart" } );
+  modal.open( { content: "Added to book bag" } );
   window.atc = setTimeout( function() {
     modal.close();
   }, 3000 );

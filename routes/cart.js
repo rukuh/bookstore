@@ -7,7 +7,7 @@ Book = mongoose.model( 'Book' );
 // POST book ids and return data
 router.post( '/', function( req, res ){
   var query = Book.
-    find( { '_id' : { $in: req.body } } );
+    find( { '_id' : { $in: '/' + req.body + '/i' } } );
 
   query.exec( function( e, docs ) {
     res.json( docs );

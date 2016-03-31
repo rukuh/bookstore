@@ -10,7 +10,7 @@ router.get( '/:skip', function( req, res ) {
   var cat = req.query.category;
   var search = req.query.search;
   var query = Book.
-    find( { 'genre': new RegExp( cat ), 'title': new RegExp( search ) } ).
+    find( { 'genre': new RegExp( cat ), 'title': new RegExp(ssearch, 'i') } ).
     limit( 30 ).
     skip( skip );
 

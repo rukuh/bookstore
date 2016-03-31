@@ -6,7 +6,7 @@ function Shelve( bookshelf, cart, target ) {
   if ( bookshelf.length === 0 ) {
     // Conditional to notify user if there are no books found containing search string
     if ( $( '#search' ).val() !== '' && $( '.book' ).length === 0 ) {
-      $( '#bookshelf' ).append(' <div id="bookshelf-empty">There are no books with "' + $( '#search' ).val() + '" in the title.');
+      $( '#bookshelf' ).append(' <div id="bookshelf-empty">There are no books with "' + $( '#search' ).val() + '" in the title');
     }
 
     // Create node that acts as indicator for end of book collection

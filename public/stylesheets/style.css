@@ -130,7 +130,7 @@ label {
 }
 #bookshelf-empty {
   text-align: center;
-  margin-top: 30%;
+  margin-top: 20%;
 }
 .book {
   border-color: gray;
@@ -286,7 +286,7 @@ input[type='checkbox']:checked ~ #side-cart {
 #cart-empty {
   display: none;
   text-align: center;
-  margin-top: 50%;
+  margin-top: 20%;
 }
 #side-cart img {
   margin-left: 68px;

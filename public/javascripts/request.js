@@ -21,7 +21,8 @@ function postCart( data ) {
   $.ajax( {
     url: '/cart',
     type: 'POST',
-    data: JSON.stringify( data ),
+    // Map ids from cart object
+    data: JSON.stringify( data.map( function( element ) { return element.id; } ) ),
     contentType: "application/json",
     processData: false
   } ).
